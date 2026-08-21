@@ -1,11 +1,11 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 
 app = Flask(__name__)
 
 
 @app.route("/")
 def home():
-    return "Hello, SOC"
+    return render_template("index.html")
 
 
 @app.route("/about")
