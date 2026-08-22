@@ -1,20 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Incident Response Simulator</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
-    <h1>Incident Response Simulator</h1>
+    <header>
 
-    <p>
-        A learning project for simulating security incidents,
-        detecting threats, and practicing incident response.
-    </p>
+        <h1>Incident Response Simulator</h1>
+    
+        <p>
+            Security incident simulation and response dashboard
+        </p>
+    
+        <div class="system-status">
+            <span class="status-dot"></span>
+            SYSTEM ONLINE
+        </div>
+    
+    </header>
+
+
+    <main>
+
+        <!-- Simulation Controls -->
+
+        <section id="simulation-controls">
+
+            <h2>Run Simulation</h2>
+
+            <label for="scenario">
+                Scenario
+            </label>
+
+            <select id="scenario">
+
+                <option value="port_scan">
+                    Port Scan
+                </option>
+
+                <option value="syn_flood_lite">
+                    SYN Flood Lite
+                </option>
+
+                <option value="brute_force_login">
+                    Brute Force Login
+                </option>
+
+                <option value="malware_beacon">
+                    Malware Beacon
+                </option>
+
+            </select>
+
+
+            <label for="target">
+                Target
+            </label>
+
+            <input
+                type="text"
+                id="target"
+                value="127.0.0.1"
+                placeholder="127.0.0.1"
+            >
+
+
+            <button id="run-button">
+                Run Simulation
+            </button>
+
+        </section>
+
+
+        <!-- Metrics -->
+
+        <section id="metrics">
+
+            <h2>Metrics</h2>
+
+            <div id="metrics-container">
+
+                <div class="metric">
+                    <h3>Total Incidents</h3>
+                    <p id="total-incidents">--</p>
+                </div>
+
+                <div class="metric">
+                    <h3>Detection Rate</h3>
+                    <p id="detection-rate">--</p>
+                </div>
+
+                <div class="metric">
+                    <h3>Total Alerts</h3>
+                    <p id="total-alerts">--</p>
+                </div>
+
+                <div class="metric">
+                    <h3>Avg Detection Latency</h3>
+                    <p id="detection-latency">--</p>
+                </div>
+
+                <div class="metric">
+                    <h3>Avg Response Time</h3>
+                    <p id="response-time">--</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Incident Feed -->
+
+        <section id="incident-feed">
+
+            <h2>Incident Feed</h2>
+
+            <div id="feed">
+
+                <p>
+                    No incidents yet.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 
 </body>
+
 </html>
