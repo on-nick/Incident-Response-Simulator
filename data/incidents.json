@@ -68,5 +68,213 @@
         "timestamp": "2026-08-20T10:30:07.418986",
         "src_ip": "192.168.1.216",
         "port": 70
+    },
+    {
+        "scenario": "port_scan",
+        "events": [
+            {
+                "event_id": "evt-478def20",
+                "scenario": "port_scan",
+                "timestamp": "2026-08-22T19:46:34.207512",
+                "src_ip": "192.168.1.131",
+                "dst_ip": "127.0.0.1",
+                "port": 21
+            },
+            {
+                "event_id": "evt-84e34d31",
+                "scenario": "port_scan",
+                "timestamp": "2026-08-22T19:46:34.207638",
+                "src_ip": "192.168.1.110",
+                "dst_ip": "127.0.0.1",
+                "port": 80
+            },
+            {
+                "event_id": "evt-a5c6eda8",
+                "scenario": "port_scan",
+                "timestamp": "2026-08-22T19:46:34.207671",
+                "src_ip": "192.168.1.208",
+                "dst_ip": "127.0.0.1",
+                "port": 53
+            },
+            {
+                "event_id": "evt-c0155788",
+                "scenario": "port_scan",
+                "timestamp": "2026-08-22T19:46:34.207692",
+                "src_ip": "192.168.1.150",
+                "dst_ip": "127.0.0.1",
+                "port": 8443
+            },
+            {
+                "event_id": "evt-846d0606",
+                "scenario": "port_scan",
+                "timestamp": "2026-08-22T19:46:34.207855",
+                "src_ip": "192.168.1.220",
+                "dst_ip": "127.0.0.1",
+                "port": 80
+            },
+            {
+                "event_id": "evt-354cfe6b",
+                "scenario": "port_scan",
+                "timestamp": "2026-08-22T19:46:34.207882",
+                "src_ip": "192.168.1.64",
+                "dst_ip": "127.0.0.1",
+                "port": 22
+            },
+            {
+                "event_id": "evt-00a60fd6",
+                "scenario": "port_scan",
+                "timestamp": "2026-08-22T19:46:34.207905",
+                "src_ip": "192.168.1.189",
+                "dst_ip": "127.0.0.1",
+                "port": 8443
+            },
+            {
+                "event_id": "evt-0e4de2dd",
+                "scenario": "port_scan",
+                "timestamp": "2026-08-22T19:46:34.207934",
+                "src_ip": "192.168.1.59",
+                "dst_ip": "127.0.0.1",
+                "port": 443
+            },
+            {
+                "event_id": "evt-a6cc026f",
+                "scenario": "port_scan",
+                "timestamp": "2026-08-22T19:46:34.207949",
+                "src_ip": "192.168.1.163",
+                "dst_ip": "127.0.0.1",
+                "port": 53
+            },
+            {
+                "event_id": "evt-79716334",
+                "scenario": "port_scan",
+                "timestamp": "2026-08-22T19:46:34.207966",
+                "src_ip": "192.168.1.185",
+                "dst_ip": "127.0.0.1",
+                "port": 22
+            }
+        ],
+        "alerts": [
+            {
+                "alert_id": "alert-df8656d4",
+                "scenario": "port_scan",
+                "severity": "HIGH",
+                "message": "Port scan detected across 6 distinct ports"
+            }
+        ],
+        "response": [
+            {
+                "step": "Log source IP",
+                "status": "done"
+            },
+            {
+                "step": "Investigate scanning activity",
+                "status": "done"
+            },
+            {
+                "step": "Block source IP",
+                "status": "done"
+            },
+            {
+                "step": "Create incident record",
+                "status": "done"
+            }
+        ]
+    },
+    {
+        "scenario": "brute_force_login",
+        "events": [
+            {
+                "event_id": "evt-b43f364b",
+                "scenario": "brute_force_login",
+                "timestamp": "2026-08-22T19:47:06.562575",
+                "src_ip": "192.168.1.144",
+                "dst_ip": "127.0.0.1",
+                "username": "user",
+                "result": "failed"
+            },
+            {
+                "event_id": "evt-b379db8c",
+                "scenario": "brute_force_login",
+                "timestamp": "2026-08-22T19:47:06.562666",
+                "src_ip": "192.168.1.251",
+                "dst_ip": "127.0.0.1",
+                "username": "admin",
+                "result": "failed"
+            },
+            {
+                "event_id": "evt-bed19c53",
+                "scenario": "brute_force_login",
+                "timestamp": "2026-08-22T19:47:06.562704",
+                "src_ip": "192.168.1.10",
+                "dst_ip": "127.0.0.1",
+                "username": "root",
+                "result": "failed"
+            },
+            {
+                "event_id": "evt-a2987551",
+                "scenario": "brute_force_login",
+                "timestamp": "2026-08-22T19:47:06.562735",
+                "src_ip": "192.168.1.56",
+                "dst_ip": "127.0.0.1",
+                "username": "root",
+                "result": "failed"
+            },
+            {
+                "event_id": "evt-acae954b",
+                "scenario": "brute_force_login",
+                "timestamp": "2026-08-22T19:47:06.562761",
+                "src_ip": "192.168.1.239",
+                "dst_ip": "127.0.0.1",
+                "username": "user",
+                "result": "failed"
+            },
+            {
+                "event_id": "evt-d051b47c",
+                "scenario": "brute_force_login",
+                "timestamp": "2026-08-22T19:47:06.562791",
+                "src_ip": "192.168.1.104",
+                "dst_ip": "127.0.0.1",
+                "username": "user",
+                "result": "failed"
+            },
+            {
+                "event_id": "evt-b0328dae",
+                "scenario": "brute_force_login",
+                "timestamp": "2026-08-22T19:47:06.562811",
+                "src_ip": "192.168.1.89",
+                "dst_ip": "127.0.0.1",
+                "username": "test",
+                "result": "failed"
+            },
+            {
+                "event_id": "evt-a9cc0ef7",
+                "scenario": "brute_force_login",
+                "timestamp": "2026-08-22T19:47:06.562833",
+                "src_ip": "192.168.1.212",
+                "dst_ip": "127.0.0.1",
+                "username": "user",
+                "result": "failed"
+            },
+            {
+                "event_id": "evt-9e704322",
+                "scenario": "brute_force_login",
+                "timestamp": "2026-08-22T19:47:06.562853",
+                "src_ip": "192.168.1.36",
+                "dst_ip": "127.0.0.1",
+                "username": "test",
+                "result": "failed"
+            },
+            {
+                "event_id": "evt-a0f48a6a",
+                "scenario": "brute_force_login",
+                "timestamp": "2026-08-22T19:47:06.562872",
+                "src_ip": "192.168.1.88",
+                "dst_ip": "127.0.0.1",
+                "username": "test",
+                "result": "failed"
+            }
+        ],
+        "alerts": [],
+        "response": []
     }
 ]
