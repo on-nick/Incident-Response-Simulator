@@ -2,7 +2,7 @@
 
 A Python-based cybersecurity project that simulates security incidents, detects suspicious activity, generates alerts, executes automated response playbooks, and displays the results through a web dashboard.
 
-This project was built as a 21-day learning and development challenge to practice Python, Flask, cybersecurity concepts, APIs, data persistence, JavaScript, and basic incident response automation.
+This project was built as a learning and development challenge to practice Python, Flask, cybersecurity concepts, APIs, data persistence, JavaScript, and basic incident response automation.
 
 ---
 
