@@ -2,6 +2,9 @@ import random
 import uuid
 from datetime import datetime
 
+from scapy.all import IP, TCP, send
+from safety import is_safe_target
+
 
 def run_port_scan(target_ip="127.0.0.1", num_ports=10):
 
@@ -93,6 +96,30 @@ def run_malware_beacon(target_ip="127.0.0.1", num_events=10):
     return events
 
 
+def run_live_port_test(target_ip="127.0.0.1", port=80):
+
+    if not is_safe_target(target_ip):
+
+        raise ValueError(
+            "Live mode only allows target 127.0.0.1"
+        )
+
+    packet = IP(dst=target_ip) / TCP(
+        dport=port,
+        flags="S"
+    )
+
+    send(packet, verbose=False)
+
+    return {
+        "target": target_ip,
+        "port": port,
+        "protocol": "TCP",
+        "flags": "SYN",
+        "mode": "live"
+    }
+
+
 SCENARIOS = {
     "port_scan": run_port_scan,
     "syn_flood_lite": run_syn_flood_lite,
@@ -116,3 +143,12 @@ if __name__ == "__main__":
 
     for event in events:
         print(event)
+
+    print("\nTesting live localhost packet:")
+
+    result = run_live_port_test(
+        target_ip="127.0.0.1",
+        port=80
+    )
+
+    print(result)

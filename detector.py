@@ -1,9 +1,10 @@
 import uuid
 
-from simulator import run_port_scan
+from alert import Alert
 
 
 def analyze(scenario, events):
+
     alerts = []
 
     if scenario == "port_scan":
@@ -17,17 +18,21 @@ def analyze(scenario, events):
 
         if len(unique_ports) >= 5:
 
-            alert = {
-                "alert_id": f"alert-{uuid.uuid4().hex[:8]}",
-                "scenario": "port_scan",
-                "severity": "HIGH",
-                "message": (
+            alert = Alert(
+                scenario="port_scan",
+                severity="HIGH",
+                message=(
                     f"Port scan detected across "
                     f"{len(unique_ports)} distinct ports"
                 )
+            )
+
+            alert_data = {
+                "alert_id": f"alert-{uuid.uuid4().hex[:8]}",
+                **alert.to_dict()
             }
 
-            alerts.append(alert)
+            alerts.append(alert_data)
 
     return alerts
 
