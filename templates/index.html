@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Incident Response Simulator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div id="toast-container" class="toast-container" role="status" aria-live="polite"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-dot" id="status-dot"></span>
+    <div>
+      <h1 class="brand-title">Incident Response Simulator</h1>
+      <p class="brand-subtitle">Simulate, detect, and respond to security incidents</p>
+    </div>
+  </div>
+  <nav class="topnav">
+    <span id="health-pill" class="health-pill">checking status…</span>
+    <a href="/about" class="nav-link">About</a>
+  </nav>
+</header>
+
+<main class="layout">
+
+  <!-- LEFT: controls -->
+  <section class="panel control-panel" aria-label="Simulation controls">
+    <h2 class="panel-title">Run a simulation</h2>
+
+    <label class="field-label" for="scenario">Scenario</label>
+    <select id="scenario" class="field-input">
+      <option value="port_scan">Port scan</option>
+      <option value="syn_flood_lite">SYN flood (lite)</option>
+      <option value="brute_force_login">Brute-force login</option>
+      <option value="malware_beacon">Malware beacon</option>
+    </select>
+
+    <label class="field-label" for="target">Target</label>
+    <input id="target" class="field-input mono" type="text" value="127.0.0.1" spellcheck="false" autocomplete="off">
+    <p class="field-hint">Only loopback or a whitelisted lab address is accepted — enforced by the server.</p>
+
+    <button id="run-button" class="run-button">
+      <span id="run-button-label">Run simulation</span>
+    </button>
+
+    <div class="legend">
+      <p class="legend-title">Severity</p>
+      <div class="legend-row"><span class="sev-dot sev-medium"></span>Port scan — medium</div>
+      <div class="legend-row"><span class="sev-dot sev-high"></span>SYN flood / brute force — high</div>
+      <div class="legend-row"><span class="sev-dot sev-critical"></span>Malware beacon — critical</div>
+    </div>
+  </section>
+
+  <!-- CENTER: live feed -->
+  <section class="panel feed-panel" aria-label="Incident feed">
+    <div class="feed-header">
+      <h2 class="panel-title">Incident feed</h2>
+      <button id="clear-button" class="text-button">Clear history</button>
+    </div>
+
+    <div id="live-stream" class="live-stream" hidden>
+      <div class="live-stream-head">
+        <span class="live-dot"></span>
+        <span id="live-stream-label">Running port scan against 127.0.0.1…</span>
+      </div>
+      <div id="live-events" class="live-events mono"></div>
+      <div id="live-alert" class="live-alert" hidden></div>
+      <div id="live-response" class="live-response" hidden>
+        <p class="live-response-title">Automated response</p>
+        <div id="live-response-steps"></div>
+      </div>
+      <div id="live-summary" class="live-summary" hidden></div>
+    </div>
+
+    <div id="feed" class="feed">
+      <p class="feed-empty">No incidents yet. Run a simulation to populate the feed.</p>
+    </div>
+  </section>
+
+  <!-- RIGHT: metrics -->
+  <section class="panel metrics-panel" aria-label="Metrics">
+    <h2 class="panel-title">Metrics</h2>
+
+    <div class="metric-row">
+      <div class="metric">
+        <span class="metric-label">Total incidents</span>
+        <span class="metric-value" id="m-total">—</span>
+      </div>
+      <div class="metric">
+        <span class="metric-label">Detection rate</span>
+        <span class="metric-value" id="m-rate">—</span>
+      </div>
+    </div>
+
+    <div class="metric-row">
+      <div class="metric">
+        <span class="metric-label">Avg. detection</span>
+        <span class="metric-value" id="m-latency">—</span>
+      </div>
+      <div class="metric">
+        <span class="metric-label">Avg. response</span>
+        <span class="metric-value" id="m-response">—</span>
+      </div>
+    </div>
+
+    <h3 class="breakdown-title">Detection by scenario</h3>
+    <div id="scenario-bars" class="scenario-bars"></div>
+
+    <h3 class="breakdown-title">Response time trend</h3>
+    <svg id="trend-chart" class="trend-chart" viewBox="0 0 260 70" preserveAspectRatio="none"></svg>
+    <p class="trend-caption">Last runs, response time (ms)</p>
+  </section>
+
+</main>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

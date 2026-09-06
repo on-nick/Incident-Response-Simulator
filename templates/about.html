@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Incident Response Simulator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-dot"></span>
+    <div>
+      <h1 class="brand-title">Incident Response Simulator</h1>
+      <p class="brand-subtitle">Simulate, detect, and respond to security incidents</p>
+    </div>
+  </div>
+  <nav class="topnav">
+    <a href="/" class="nav-link">← Back to dashboard</a>
+  </nav>
+</header>
+
+<main class="about-layout">
+  <section class="panel about-panel">
+    <h2 class="panel-title">What this is</h2>
+    <p class="about-text">
+      This tool simulates security incidents, runs them through a rule-based
+      detection engine, and executes an automated response playbook — the
+      same shape of pipeline a real SOC (security operations center) uses,
+      compressed into something you can run and inspect on your own machine.
+    </p>
+
+    <h3 class="about-subtitle">Scenarios</h3>
+    <dl class="scenario-list">
+      <dt>Port scan</dt>
+      <dd>Synthetic events representing sequential probes across common
+        service ports. Flagged once a run touches enough distinct ports to
+        look like reconnaissance rather than normal traffic.</dd>
+
+      <dt>SYN flood (lite)</dt>
+      <dd>A short burst of connection-attempt events aimed at one port.
+        Flagged once the burst size crosses a volume threshold, the same
+        way a real IDS would catch an early-stage denial-of-service attempt.</dd>
+
+      <dt>Brute-force login</dt>
+      <dd>Repeated failed authentication attempts against a set of common
+        usernames. Flagged once failed attempts cross a threshold —
+        successful logins are never counted.</dd>
+
+      <dt>Malware beacon</dt>
+      <dd>Periodic outbound "callback" events, mimicking malware checking in
+        with a command-and-control server. Flagged once enough beacons are
+        observed at a consistent interval.</dd>
+    </dl>
+
+    <h3 class="about-subtitle">How detection and response work</h3>
+    <p class="about-text">
+      Each scenario has its own threshold-based detector — for example, "5 or
+      more distinct ports in one run" for a port scan. Crossing the threshold
+      raises an alert with a severity level, which then triggers a scenario-
+      specific playbook: a fixed sequence of response actions (blocking a
+      source IP, locking an account, isolating a host, and so on) that get
+      logged as executed.
+    </p>
+
+    <h3 class="about-subtitle">Known limitations</h3>
+    <p class="about-text">
+      This is a training and portfolio tool, not a production security
+      product. Detection thresholds are simple and static rather than
+      adaptive; response actions are simulated and logged rather than wired
+      into a real firewall, EDR, or identity provider; and the AI-generated
+      incident summary falls back to a template when no API key is
+      configured, so its quality depends on that configuration. Live packet
+      simulation is restricted to loopback and explicitly whitelisted
+      private addresses only.
+    </p>
+  </section>
+</main>
+
+</body>
+</html>
